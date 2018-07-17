@@ -12,11 +12,10 @@ namespace Questao3
         static void Main(string[] args)
         {
 
-            // cria o diretório temp2
+            //Cria o diretório temp2
             Directory.CreateDirectory("C:\\temp2");
 
             //Copiando um arquivo do diretório C:\temp, para C\temp2:
-
             string sourceDir = @"c:\temp";
             string backupDir = @"c:\temp2";
 
@@ -25,37 +24,36 @@ namespace Questao3
                 string[] picList = Directory.GetFiles(sourceDir, "*.jpg");
                 string[] txtList = Directory.GetFiles(sourceDir, "*.txt");
 
-                // Copy picture files.
+                // Copia arquivos de imagem
                 foreach (string f in picList)
                 {
                     // Remove path from the file name.
                     string fName = f.Substring(sourceDir.Length + 1);
 
-                    // Use the Path.Combine method to safely append the file name to the path.
-                    // Will overwrite if the destination file already exists.
+                    // Usa o metodo Path.Combine para anexar com segurança o nome do caminho ao arquivo
+                    // Sobrescreve se o arquivo de destino já existir
                     File.Copy(Path.Combine(sourceDir, fName), Path.Combine(backupDir, fName), true);
                 }
 
-                // Copy text files.
+                // Copia arquivos de texto
                 foreach (string f in txtList)
                 {
-
                     // Remove path from the file name.
                     string fName = f.Substring(sourceDir.Length + 1);
 
+                    //excessão, mostra se já existir os arquivos de texto
                     try
                     {
-                        // Will not overwrite if the destination file already exists.
+                        // não irá sobreescrever no destino de já existir os arquivos
                         File.Copy(Path.Combine(sourceDir, fName), Path.Combine(backupDir, fName));
                     }
 
-                    // Catch exception if the file was already copied.
+                    // Catch exception se o arquivo já foi copiado
                     catch (IOException copyError)
                     {
                         Console.WriteLine(copyError.Message);
                     }
                 }
-
             }
 
             catch (DirectoryNotFoundException dirNotFound)
