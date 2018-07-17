@@ -8,10 +8,9 @@ namespace Questao1
 {
     class Program
     {
+        //maior numero inteiro em um array de 5 numeros
         static void Main(string[] args)
-        {
-              
-            //maior numero inteiro em um array
+        {              
             const int numeroQtd = 5;
             int[] numeros = new int[numeroQtd];
             int menor = 0, maior = 0, posicao_menor = 0, posicao_maior = 0;
